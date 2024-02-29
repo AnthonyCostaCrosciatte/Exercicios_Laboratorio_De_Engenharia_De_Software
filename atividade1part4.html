@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        let dados = prompt("Por favor, digite algo:");
+        
+        if (dados !== null) { 
+            let confirmacao = confirm("Deseja verificar e saber o tipo de dado que digitou?");
+            
+            if (confirmacao) { 
+                if (!isNaN(dados)) { 
+                    document.write("<p>O dado digitado é do tipo Number.</p>");
+                } else if (typeof dados === 'string') { 
+                    document.write("<p>O dado digitado é do tipo String.</p>");
+                } else { 
+                    document.write("<p>O tipo de dado digitado não é nem Number nem String.</p>");
+                }
+            } else { 
+                document.write("<p>Obrigado por visitar esta página. Até breve!</p>");
+            }
+        } else { 
+            document.write("<p>Operação cancelada. Obrigado por visitar esta página. Até breve!</p>");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        let numero = prompt("Digite um valor positivo inteiro","");
+        if(isNaN(numero))
+        {
+            alert("Olá, seja bem vindo!")
+        }
+        else
+        {
+            var primo = true;
+            if (numero == 0 || numero == 1)
+            {
+                primo = false;
+            }
+            else
+            {
+                for (var i = 2; i <= Math.sqrt(numero); i++)
+                {
+                    if (numero % i == 0)
+                    {
+                        primo = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (primo)
+        {
+            alert("Este número " + numero + " é primo!");
+        }
+        else
+        {
+            alert("Este número " + numero + " não é primo!")
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

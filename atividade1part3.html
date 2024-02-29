@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        let numero = prompt("Digite um numero inteiro positivo", "");
+        if (isNaN(numero)) {
+            alert("Por favor, digite um número válido!");
+        } else {
+            numero = parseInt(numero);
+            if (numero >= 0 && Number.isInteger(numero)) {
+                var fatorial = 1;
+                for (var i = 1; i <= numero; i++) {
+                    fatorial *= i;
+                }
+                alert("O fatorial do número " + numero + " é: " + fatorial);
+            } else {
+                alert("Número inválido, por favor digite um número inteiro positivo!");
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
