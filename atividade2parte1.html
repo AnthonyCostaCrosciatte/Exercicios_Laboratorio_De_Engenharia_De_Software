@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  #content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  h2 {
+    margin-bottom: 20px;
+  }
+  #output {
+    margin-top: 20px;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    font-size: 18px; 
+    margin-bottom: 5px;
+  }
+</style>
+</head>
+<body>
+<div id="content">
+  <h2> Sistema de adicionamento de itens</h2>
+
+  <div>
+    <label for="inputItem">Novo item:</label>
+    <input type="text" id="inputItem">
+    <button onclick="adicionarItem()">Adicionar</button>
+  </div>
+
+  <div id="output">
+    <h3>Itens:</h3>
+    <ul id="listaItens">
+      <!-- Os itens que serão adicionados, vão aparecer por aqui -->
+    </ul>
+  </div>
+
+  <button onclick="excluirItem()">Excluir Item</button>
+  <button onclick="recuperarItem()">Recuperar Item</button>
+</div>
+
+<script>
+  let itens = [];
+
+  function adicionarItem() {
+    const novoItem = document.getElementById('inputItem').value.trim();
+    if (novoItem !== '') {
+      itens.push(novoItem);
+      itens.sort(); 
+      exibirItens();
+      document.getElementById('inputItem').value = '';
+    }
+  }
+
+  function exibirItens() {
+    const lista = document.getElementById('listaItens');
+    lista.innerHTML = ''; 
+    itens.forEach(function(item) {
+      const li = document.createElement('li');
+      const textoItem = document.createTextNode(item);
+      li.appendChild(textoItem);
+      lista.appendChild(li);
+    });
+  }
+
+  
+  function excluirItem() {
+    const itemParaExcluir = prompt('Digite o nome do item que deseja excluir:');
+    const index = itens.indexOf(itemParaExcluir);
+    if (index !== -1) {
+      itens.splice(index, 1);
+      exibirItens();
+    } else {
+      alert('Item não encontrado na lista.');
+    }
+  }
+
+  function recuperarItem() {
+    const itemDesejado = prompt('Digite o nome do item que deseja recuperar:');
+    const index = itens.indexOf(itemDesejado);
+    if (index !== -1) {
+      alert(`O item "${itemDesejado}" está na posição ${index + 1} da lista.`);
+    } else {
+      alert('Item não encontrado na lista.');
+    }
+  }
+</script>
+</body>
+</html>
