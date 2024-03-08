@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnMostrarData" onclick="mostrarOuSairData()">Deseja ver data atual?</button>
+    <div id="resultado"></div>
+    <script>
+        var mostrandoData = false;
+
+        function mostrarOuSairData() {
+            if (!mostrandoData) {
+                var diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+                var mesesDoAno = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+                var dataAtual = new Date();
+                var diaSemanaAtual = diasDaSemana[dataAtual.getDay()];
+                var diaAtual = dataAtual.getDate();
+                var mesAtual = mesesDoAno[dataAtual.getMonth()];
+                var anoAtual = dataAtual.getFullYear();
+                var dataFormatada = diaSemanaAtual + ', ' + diaAtual + ' de ' + mesAtual + ' de ' + anoAtual;
+                document.getElementById("resultado").innerText = dataFormatada;
+                document.getElementById("btnMostrarData").innerText = "Voltar ao menu?";
+                mostrandoData = true;
+            } else {
+                document.getElementById("resultado").innerText = "";
+                document.getElementById("btnMostrarData").innerText = "Deseja ver a data atual?";
+                mostrandoData = false;
+            }
+        }
+    </script>
+</body>
+</html>

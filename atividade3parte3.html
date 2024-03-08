@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #container {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input type="text" id="inputTexto" placeholder="Digite uma palavra ou frase">
+        <br>
+        <button onclick="verificarPalindromo()">Verificar Palíndromo</button>
+    </div>
+
+    <script>
+        function verificarPalindromo() {
+            var texto = document.getElementById("inputTexto").value.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+            var reverso = texto.split('').reverse().join('');
+
+            if (texto === reverso) {
+                alert("Isso É um palíndromo!");
+            } else {
+                alert("Isso Não é um palíndromo!");
+            }
+        }
+    </script>
+</body>
+</html>

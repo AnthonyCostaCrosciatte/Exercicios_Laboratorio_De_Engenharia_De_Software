@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        button {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <button id="btnMostrarRelogio" onclick="mostrarRelogio()">Ver o relógio</button>
+    </div>
+    <div id="relogio" style="display: none;">
+        <div id="resultado"></div>
+        <button onclick="voltarAoMenu()">Voltar ao Menu</button>
+    </div>
+    <script>
+        // Não esquecer que aqui as variaveis possíveis no script para fazer o relógio funcionar
+        var mostrandoRelogio = false;
+        var intervaloRelogio;
+
+        // function do relogio, para vizualisa-lo
+        function mostrarRelogio() {
+            document.getElementById("menu").style.display = "none";
+            document.getElementById("relogio").style.display = "block";
+            atualizarRelogio();
+            mostrandoRelogio = true;
+        }
+
+        // Ter uma function para retornar ao menu
+        function voltarAoMenu() {
+            document.getElementById("relogio").style.display = "none";
+            document.getElementById("menu").style.display = "block";
+            mostrandoRelogio = false;
+            clearInterval(intervaloRelogio);
+        }
+
+        //uma function para atualizar o relogio a todo momento
+        function atualizarRelogio() {
+            var resultado = document.getElementById("resultado");
+            var dataAtual = new Date();
+            var hora = dataAtual.getHours();
+            var minuto = dataAtual.getMinutes();
+            var segundo = dataAtual.getSeconds();
+
+            hora = hora < 10 ? "0" + hora : hora;
+            minuto = minuto < 10 ? "0" + minuto : minuto;
+            segundo = segundo < 10 ? "0" + segundo : segundo;
+
+            resultado.innerText = hora + ":" + minuto + ":" + segundo;
+
+            // o SetTimeout será aqui(a professora pediu).//
+            intervaloRelogio = setTimeout(atualizarRelogio, 1000);
+        }
+    </script>
+</body>
+</html>
+
