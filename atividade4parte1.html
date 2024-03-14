@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #form-container {
+            width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .role-selector {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .option {
+            cursor: pointer;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: blue; 
+            color: white; 
+        }
+
+        .option:hover {
+            background-color: gray; 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: gray; 
+        }
+
+        #thank-you-message {
+            display: none; 
+            margin-top: 10px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <label for="dob">Data de Nascimento:</label>
+                <input type="text" id="dob" name="dob"> 
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefone Fixo:</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="mobile">Telefone Móvel:</label>
+                <input type="tel" id="mobile" name="mobile">
+            </div>
+            <div class="form-group">
+                <label for="role">Função:</label>
+                <div id="role-selector" class="role-selector">
+                    <div class="option selected">Professor</div>
+                    <div class="option">Aluno</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="area">Área:</label>
+                <input type="text" id="area" name="area">
+            </div>
+            <div class="form-group">
+                <label for="registration">Matrícula:</label>
+                <input type="text" id="registration" name="registration">
+            </div>
+            <div class="form-group">
+                <label for="lattes">Endereço Lattes:</label>
+                <input type="text" id="lattes" name="lattes">
+            </div>
+            <button type="submit" id="submit-btn">Enviar</button>
+            <div id="thank-you-message">Muito obrigado! Boa sorte ;</div>
+        </form>
+    </div>
+
+    <script>
+        $( function() {
+            
+            $( "#dob" ).datepicker({
+                dateFormat: 'dd/mm/yy',
+                changeYear: true,
+                changeMonth: true,
+                yearRange: '1950:2022',
+                beforeShow: function(input, inst) {
+                    inst.dpDiv.addClass('custom-datepicker');
+                }
+            });
+
+            $('#dob').on('input', function() {
+                let input = $(this).val();
+                input = input.replace(/\D/g, ''); 
+                if (input.length > 0) {
+    
+                    input = input.replace(/^(\d{2})(\d{2})(\d{4})$/, '$1/$2/$3');
+                }
+                $(this).val(input);
+            });
+
+            $('.option').click(function() {
+                $('.option').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $('#registration-form').submit(function(event) {
+                event.preventDefault();
+                $('#thank-you-message').show();
+            });
+        });
+    </script>
+</body>
+</html>
