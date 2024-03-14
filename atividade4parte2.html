@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Carro</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #form-container {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #car-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #car-form input {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-top: 4px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #car-form button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #car-form button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="form-container">
+        <form id="car-form">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" name="marca"><br><br>
+            
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" name="modelo"><br><br>
+            
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" name="ano" min="1900" max="2022"><br><br>
+            
+            <label for="cor">Cor:</label>
+            <input type="text" id="cor" name="cor"><br><br>
+            
+            <label for="kilometragem">Kilometragem:</label>
+            <input type="number" id="kilometragem" name="kilometragem"><br><br>
+            
+            <label for="valor-fipe">Valor FIPE:</label>
+            <input type="number" id="valor-fipe" name="valor-fipe"><br><br>
+            
+            <button type="submit">Calcular</button>
+        </form>
+    </div>
+
+    <script>
+        class Carro {
+            constructor(marca, modelo, ano, cor, kilometragem, valorFipe) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.ano = ano;
+                this.cor = cor;
+                this.kilometragem = kilometragem;
+                this.valorFipe = valorFipe;
+            }
+
+            anosUtilizacao() {
+                const anoAtual = new Date().getFullYear();
+                return anoAtual - this.ano;
+            }
+
+            valorMercado() {
+                const anos = this.anosUtilizacao();
+                if (this.kilometragem <= 30000) {
+                    return this.valorFipe * 1.1;
+                } else if (this.kilometragem <= 50000) {
+                    return this.valorFipe;
+                } else {
+                    return this.valorFipe * 0.9;
+                }
+            }
+        }
+
+        document.getElementById('car-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const marca = document.getElementById('marca').value;
+            const modelo = document.getElementById('modelo').value;
+            const ano = parseInt(document.getElementById('ano').value);
+            const cor = document.getElementById('cor').value;
+            const kilometragem = parseInt(document.getElementById('kilometragem').value);
+            const valorFipe = parseInt(document.getElementById('valor-fipe').value);
+
+            const carro = new Carro(marca, modelo, ano, cor, kilometragem, valorFipe);
+
+            const anos = carro.anosUtilizacao();
+            const valorMercado = carro.valorMercado();
+            alert(`O veículo tem ${anos} anos de utilização. O valor de mercado é R$ ${valorMercado.toFixed(2)}`);
+        });
+    </script>
+</body>
+</html>
