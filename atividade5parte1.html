@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX5simuladorteste</title>
+</head>
+<body>
+
+<div id="divPrincipal" style="width: 500px; height: 500px; margin: auto; border: 2px solid black; border-radius: 10px;">
+    <h2 style="text-align: center; margin-top: 20px;">Contador de Convidados por Gênero</h2>
+
+    <div id="totalContainer" style="text-align: center; margin-bottom: 20px;">
+        <div id="homensContainer" style="display: inline-block; text-align: center;">
+            <img src="https://w7.pngwing.com/pngs/922/81/png-transparent-graphy-computer-icons-user-3d-character-icon-material-cartoon-character-camera-icon-phone-icon.png" alt="Homem" style="width: 100px; display: block; margin: auto;">
+            <div style="text-align: center;">
+                <div id="retanguloHomens" style="width: 50px; height: 30px; margin: 10px auto; border-radius: 5px; background-color: lightblue; display: block;">0</div>
+                <button id="btnHomemMenos" style="background-color: red; display: inline-block;">-</button>
+                <button id="btnHomemMais" style="background-color: green; display: inline-block;">+</button>
+            </div>
+        </div>
+
+        <div id="mulheresContainer" style="display: inline-block; margin-left: 50px; text-align: center;">
+            <img src="https://th.bing.com/th/id/OIP._IXopOsAQJN-tiMiB9Lw2QHaHa?w=3873&h=3873&rs=1&pid=ImgDetMain" alt="Mulher" style="width: 100px; display: block; margin: auto;">
+            <div style="text-align: center;">
+                <div id="retanguloMulheres" style="width: 50px; height: 30px; margin: 10px auto; border-radius: 5px; background-color: lightblue; display: block;">0</div>
+                <button id="btnMulherMenos" style="background-color: red; display: inline-block;">-</button>
+                <button id="btnMulherMais" style="background-color: green; display: inline-block;">+</button>
+            </div>
+        </div>
+
+        <div id="totalContador" style="display: inline-block; margin-left: 50px; text-align: center;">
+            <div style="text-align: center;">
+                <span id="totalText" style="font-size: 20px;">Total:</span>
+                <div id="retanguloTotal" style="width: 50px; height: 30px; margin: 10px auto; border-radius: 5px; background-color: lightblue; display: block;">0</div>
+            </div>
+        </div>
+    </div>
+    <button id="btnAtualizar" style="display: block; margin: auto;">Atualizar</button>
+</div>
+
+<script>
+    window.onload = function() {
+        var btnHomemMais = document.getElementById("btnHomemMais");
+        var btnHomemMenos = document.getElementById("btnHomemMenos");
+        var btnMulherMais = document.getElementById("btnMulherMais");
+        var btnMulherMenos = document.getElementById("btnMulherMenos");
+        var retanguloHomens = document.getElementById("retanguloHomens");
+        var retanguloMulheres = document.getElementById("retanguloMulheres");
+        var retanguloTotal = document.getElementById("retanguloTotal");
+
+        var homensCount = 0;
+        var mulheresCount = 0;
+
+        btnHomemMais.addEventListener("click", function() {
+            homensCount++;
+            retanguloHomens.textContent = homensCount;
+            retanguloTotal.textContent = homensCount + mulheresCount;
+        });
+
+        btnHomemMenos.addEventListener("click", function() {
+            if (homensCount > 0) {
+                homensCount--;
+                retanguloHomens.textContent = homensCount;
+                retanguloTotal.textContent = homensCount + mulheresCount;
+            }
+        });
+
+        btnMulherMais.addEventListener("click", function() {
+            mulheresCount++;
+            retanguloMulheres.textContent = mulheresCount;
+            retanguloTotal.textContent = homensCount + mulheresCount;
+        });
+
+        btnMulherMenos.addEventListener("click", function() {
+            if (mulheresCount > 0) {
+                mulheresCount--;
+                retanguloMulheres.textContent = mulheresCount;
+                retanguloTotal.textContent = homensCount + mulheresCount;
+            }
+        });
+
+        var btnAtualizar = document.getElementById("btnAtualizar");
+        btnAtualizar.addEventListener("click", function() {
+            homensCount = 0;
+            mulheresCount = 0;
+            retanguloHomens.textContent = homensCount;
+            retanguloMulheres.textContent = mulheresCount;
+            retanguloTotal.textContent = homensCount + mulheresCount;
+        });
+    };
+</script>
+
+</body>
+</html>
