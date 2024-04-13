@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Dinâmica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f2f2f2;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+        .display {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+        .button {
+            padding: 15px;
+            font-size: 18px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .number {
+            background-color: #4CAF50; /* Verde */
+        }
+        .operator {
+            background-color: #FFD700; /* Laranja claro */
+        }
+        .clear, .clear:hover {
+            background-color: #FF6347; /* Vermelho borgonha */
+        }
+        .clear:hover {
+            background-color: #cc4d39; /* Tom mais escuro do vermelho borgonha ao passar o mouse */
+        }
+        .equal, .equal:hover {
+            background-color: #FF69B4; /* Rosa */
+        }
+        .equal:hover {
+            background-color: #D82C78; /* Tom mais escuro do rosa ao passar o mouse */
+        }
+        .button:hover {
+            background-color: #444; /* Cinza escuro ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons" id="buttons"></div>
+</div>
+
+<script>
+    const buttons = [
+        '7', '8', '9', '/',
+        '4', '5', '6', '*',
+        '1', '2', '3', '-',
+        '0', '.', '=', '+',
+        'C', 'CE'
+    ];
+
+    const display = document.getElementById('display');
+    const buttonsDiv = document.getElementById('buttons');
+
+    buttons.forEach(buttonValue => {
+        const button = document.createElement('button');
+        button.textContent = buttonValue;
+        button.classList.add('button');
+        if (!isNaN(buttonValue) || buttonValue === '.') {
+            button.classList.add('number');
+        } else if (buttonValue === 'C' || buttonValue === 'CE') {
+            button.classList.add('clear');
+        } else if (buttonValue === '=') {
+            button.classList.add('equal');
+        } else {
+            button.classList.add('operator');
+        }
+        buttonsDiv.appendChild(button);
+
+        button.addEventListener('click', () => {
+            if (buttonValue === 'C') {
+                if (display.textContent !== '0') {
+                    display.textContent = display.textContent.slice(0, -1);
+                }
+                if (display.textContent === '') {
+                    display.textContent = '0';
+                }
+            } else if (buttonValue === 'CE') {
+                display.textContent = '0';
+            } else if (buttonValue === '=') {
+                display.textContent = eval(display.textContent);
+            } else {
+                if (display.textContent === '0' && !isNaN(buttonValue)) {
+                    display.textContent = buttonValue;
+                } else {
+                    display.textContent += buttonValue;
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
