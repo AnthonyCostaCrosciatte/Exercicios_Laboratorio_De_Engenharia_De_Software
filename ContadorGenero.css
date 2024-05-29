@@ -1,0 +1,66 @@
+.contador-container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    border: 1px solid;
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+  }
+  
+  .contador-container h1, h2 {
+    line-height: 0.2;
+  }
+  
+  .reload {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    cursor: pointer;
+  }
+  
+  .containerHomemMulher {
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .contadorTotal {
+    border: 1px solid black;
+    padding: 5px 25px;
+  }
+  
+  .containerHomem, .containerMulher {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container-btns {
+    display: flex;
+  }
+  
+  button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #9664f8;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+  }
+  
+  button:hover {
+    background-color: #1e3d5f;
+  }
+  
+  img {
+    width: 150px;
+  }
+  

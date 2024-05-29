@@ -1,0 +1,35 @@
+.counter {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .counter h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .increment {
+    background-color: lightblue;
+    color: black;
+  }
+  
+  .decrement {
+    background-color: red;
+    color: white;
+  }
+  
